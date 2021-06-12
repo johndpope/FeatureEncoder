@@ -16,3 +16,5 @@ kubectl create secret docker-registry fe123 -n acm890-is --docker-server=git.haw
 6. kubectl apply -f deploy.yaml
 7. kubectl get pods (mark pod name )
 8. kubectl port-forward pod name  8080:8885
+
+IL: kubectl exec -it POD-NAME /bin/bash

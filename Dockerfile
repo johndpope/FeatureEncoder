@@ -19,9 +19,10 @@ RUN apt-get install -y protobuf-compiler python-pil python-lxml
 RUN pip install jupyter
 
 RUN pip install matplotlib
-
-
-
+RUN  apt install unzip
+RUN !wget https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip
+RUN unzip ninja-linux.zip -d /usr/local/bin/
+RUN update-alternatives --install /usr/bin/ninja ninja /usr/local/bin/ninja 1 --force
 
 
 RUN export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
