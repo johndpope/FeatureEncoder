@@ -1,0 +1,8 @@
+docker build -t .
+docker tag fee git.haw-hamburg.de:5005/acm890/is:latest
+docker push git.haw-hamburg.de:5005/acm890/is:latest
+kubectl config set-context --current --namespace=acm890-is
+deploy username: gitlab+deploy-token-1058
+deploy password: BayJroBxmDNEsHQpkxxd
+
+kubectl create secret docker-registry fe123 -n acm890-is --docker-server=git.haw-hamburg.de:5005 --docker-username=gitlab+deploy-token-1058 --docker-password=BayJroBxmDNEsHQpkxxd --docker-email=SaifAldeen.Alkhateeb@haw-hamburg.de

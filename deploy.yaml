@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe
+  labels:
+    app: fe
+spec:
+  selector:
+    app: fe
+  ports:
+    - name: http 
+      port: 8085
+      targetPort: 8085 #This is the actual port on which your application is running inside the container
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fe
+spec:
+  selector:
+    matchLabels:
+      app: fe
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fe
+    spec:
+      containers:
+        - image: git.haw-hamburg.de:5005/acm890/is:latest
+          name: fe
+          ports:
+            - containerPort: 8085
+      imagePullSecrets:
+        - name: fe123
