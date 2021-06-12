@@ -29,6 +29,7 @@ spec:
     spec:
       containers:
         - image: git.haw-hamburg.de:5005/acm890/is:latest
+        #- image: git.haw-hamburg.de:5005/acm890/is:{your tag}
           name: fe
           ports:
             - containerPort: 8085

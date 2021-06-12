@@ -1,8 +1,18 @@
-docker build -t .
-docker tag fee git.haw-hamburg.de:5005/acm890/is:latest
+docker build -t fe .
+docker tag fe git.haw-hamburg.de:5005/acm890/is:latest
 docker push git.haw-hamburg.de:5005/acm890/is:latest
 kubectl config set-context --current --namespace=acm890-is
 deploy username: gitlab+deploy-token-1058
 deploy password: BayJroBxmDNEsHQpkxxd
 
 kubectl create secret docker-registry fe123 -n acm890-is --docker-server=git.haw-hamburg.de:5005 --docker-username=gitlab+deploy-token-1058 --docker-password=BayJroBxmDNEsHQpkxxd --docker-email=SaifAldeen.Alkhateeb@haw-hamburg.de
+
+0. docker login git.haw-hamburg.de:5005
+1. docker build -t fe .
+2. docker tag fe git.haw-hamburg.de:5005/acm890/is:minh
+3. docker push git.haw-hamburg.de:5005/acm890/is:minh
+4. isLogged() ? nichts : kubelogin 
+5. kubectl delete deployment fe
+6. kubectl apply -f deploy.yaml
+7. kubectl get pods (mark pod name )
+8. kubectl port-forward pod name  8080:8885

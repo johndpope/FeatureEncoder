@@ -6,6 +6,10 @@ RUN mkdir FeatureEncoder
 
 COPY .. /FeatureEncoder/
 
+WORKDIR /FeatureEncoder/
+
+RUN conda env create -f restyle_env.yaml
+
 RUN apt-get install -y git python-pip
 
 RUN pip install --upgrade pip
@@ -16,9 +20,9 @@ RUN pip install jupyter
 
 RUN pip install matplotlib
 
-WORKDIR /FeatureEncoder/
 
-RUN conda env create -f restyle_env.yaml
+
+
 
 RUN export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 
