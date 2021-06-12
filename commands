@@ -12,6 +12,7 @@ kubectl create secret docker-registry fe123 -n acm890-is --docker-server=git.haw
 2. docker tag fe git.haw-hamburg.de:5005/acm890/is:minh
 3. docker push git.haw-hamburg.de:5005/acm890/is:minh
 4. isLogged() ? nichts : kubelogin 
+--. kubectl config set-context --current --namespace=acm890-is
 5. kubectl delete deployment fe
 6. kubectl apply -f deploy.yaml
 7. kubectl get pods (mark pod name )
