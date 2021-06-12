@@ -18,7 +18,7 @@ DATA = {
     "image_path": "notebooks/images/face_img.jpg"
 }
 
-def run(image_path, transform):
+def run(image_path):
     model_path = DATA["model_path"]
     
     # step 4 load pretrained model
@@ -74,7 +74,3 @@ def run(image_path, transform):
         #print('Inference took {:.4f} seconds.'.format(toc - tic))
     
     return result_latents
-
-
-run(DATA['image_path', 'model_path', 'transform'])
-
