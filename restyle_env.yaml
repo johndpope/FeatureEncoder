@@ -1,5 +1,6 @@
-name: restyle_env
+name: conda_env
 channels:
+  - torch
   - conda-forge
   - defaults
 dependencies:
@@ -24,7 +25,6 @@ dependencies:
   - xz=5.2.5=h7b6447c_0
   - zlib=1.2.11=h7b6447c_3
   - pip:
-    - flask
     - scipy==1.4.1
     - matplotlib==3.2.1
     - tqdm==4.46.0
@@ -34,5 +34,4 @@ dependencies:
     - tensorboard==2.2.1
     - torch==1.6.0
     - torchvision==0.4.2
-prefix: ~/anaconda3/envs/restyle_env
 
