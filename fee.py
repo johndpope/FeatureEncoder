@@ -11,6 +11,7 @@ import torchvision.transforms as transforms
 from utils.common import tensor2im
 from models.psp import pSp
 from utils.inference_utils import run_on_batch
+import matplotlib.pyplot as plt
 import os
 
 
