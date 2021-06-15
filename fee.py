@@ -11,30 +11,32 @@ import torchvision.transforms as transforms
 from utils.common import tensor2im
 from models.psp import pSp
 from utils.inference_utils import run_on_batch
+import os
 
 
 DATA = {
-    "model_path": "pretrained_models/restyle_psp_ffhq_encode.pt",
+    "model_path": "/home/jovyan/FeatureEncoder/pretrained_models/restyle_psp_ffhq_encode.pt",
     "image_path": "notebooks/images/face_img.jpg"
 }
 
+
+model_path = DATA["model_path"]
+
+# step 4 load pretrained model
+ckpt = torch.load(model_path, map_location='cpu')
+
+opts = ckpt['opts']
+
+# update the training options
+opts['checkpoint_path'] = model_path
+
+opts = Namespace(**opts)
+net = pSp(opts)
+
+net.eval()
+net.cuda()
+
 def run(image_path):
-    model_path = DATA["model_path"]
-    
-    # step 4 load pretrained model
-    ckpt = torch.load(model_path, map_location='cpu')
-
-    opts = ckpt['opts']
-
-    # update the training options
-    opts['checkpoint_path'] = model_path
-
-    opts = Namespace(**opts)
-    net = pSp(opts)
-
-    net.eval()
-    net.cuda()
-    
     # step 5
     
     original_image = Image.open(image_path).convert("RGB")
@@ -63,7 +65,7 @@ def run(image_path):
 
         return avg_image
     
-    opts.n_iters_per_batch = 5
+    opts.n_iters_per_batch = 1
     opts.resize_outputs = False  # generate outputs at full resolution
 
     with torch.no_grad():
